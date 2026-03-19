@@ -1,4 +1,4 @@
-package com.itheima.ai.controller;
+package com.teamdev.modernai.controller;
 
 import com.itheima.ai.repository.ChatHistoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +12,18 @@ import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvis
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/ai")
-public class GameController {
+public class CustomerServiceController {
 
-    private final ChatClient gameChatClient;
+    private final ChatClient serviceChatClient;
 
-    @RequestMapping(value = "/game", produces = "text/html;charset=utf-8")
-    public Flux<String> chat(String prompt, String chatId) {
-        return gameChatClient.prompt()
+    private final ChatHistoryRepository chatHistoryRepository;
+
+    @RequestMapping(value = "/service", produces = "text/html;charset=utf-8")
+    public Flux<String> service(String prompt, String chatId) {
+        // 1.保存会话id
+        chatHistoryRepository.save("service", chatId);
+        // 2.请求模型
+        return serviceChatClient.prompt()
                 .user(prompt)
                 .advisors(a -> a.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId))
                 .stream()

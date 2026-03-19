@@ -1,9 +1,10 @@
 package com.teamdev.modernai.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itheima.ai.entity.po.School;
-import com.itheima.ai.mapper.SchoolMapper;
-import com.itheima.ai.service.ISchoolService;
+
+import com.teamdev.modernai.entity.po.School;
+import com.teamdev.modernai.mapper.SchoolMapper;
+import com.teamdev.modernai.service.ISchoolService;
 import org.springframework.stereotype.Service;
 
 /**

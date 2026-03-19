@@ -1,6 +1,7 @@
 package com.teamdev.modernai.controller;
 
-import com.itheima.ai.repository.ChatHistoryRepository;
+
+import com.teamdev.modernai.repository.ChatHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.RequestMapping;

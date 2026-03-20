@@ -8,11 +8,16 @@
         <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.teamdev</groupId>
+
+    <groupId>com.teamdev.modernai</groupId>
     <artifactId>modern-ai</artifactId>
+
+    <groupId>com.itheima</groupId>
+    <artifactId>heima-ai</artifactId>
+
     <version>0.0.1-SNAPSHOT</version>
-    <name>modern-ai</name>
-    <description>modern-ai</description>
+    <name>heima-ai</name>
+    <description>heima-ai</description>
     <url/>
     <licenses>
         <license/>
@@ -56,7 +61,9 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+
             <version>1.18.22</version>
+
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -68,6 +75,7 @@
             <artifactId>spring-ai-pdf-document-reader</artifactId>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

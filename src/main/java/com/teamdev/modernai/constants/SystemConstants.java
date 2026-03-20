@@ -2,6 +2,8 @@ package com.teamdev.modernai.constants;
 
 public class SystemConstants {
 
+
+
     /**
      * 🕵️ 推理破案游戏 Prompt（已升级版）
      */
@@ -96,3 +98,4 @@ public class SystemConstants {
 
 
 }
+

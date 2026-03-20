@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 ## 📖 项目简介
-Modern-AI 是一个基于 Spring Boot 与 Spring AI 构建的综合性企业级 AI 应用。本项目致力于探索大语言模型（LLM）在实际业务场景中的落地，底层无缝兼容 **阿里云百炼（OpenAI协议）** 与 **本地 Ollama 模型**。
+Modern-AI 是一个基于 Spring Boot 与 Spring AI 构建的综合性企业级 AI 应用。本项目致力于探索大语言模型（LLM）在实际业务场景中的落地，底层无缝兼容 **阿里云百炼（OpenAI协议）** 。
 
 项目涵盖了通用多模态对话、RAG 个人知识库、Agent 智能客服（Function Calling）、以及纯 Prompt 驱动的文字游戏等丰富场景，全方位展示了大模型技术的业务赋能能力。
 

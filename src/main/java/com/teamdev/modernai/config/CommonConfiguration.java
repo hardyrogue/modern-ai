@@ -1,6 +1,9 @@
 package com.teamdev.modernai.config;
 
-servationRegistry;
+import com.teamdev.modernai.constants.SystemConstants;
+
+import com.teamdev.modernai.tools.CourseTools;
+import io.micrometer.observation.ObservationRegistry;
 import org.springframework.ai.autoconfigure.openai.OpenAiChatProperties;
 import org.springframework.ai.autoconfigure.openai.OpenAiConnectionProperties;
 import org.springframework.ai.chat.client.ChatClient;
@@ -35,7 +38,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Configuration
-public class CommonConfiguration {
+public class    CommonConfiguration {
 
     @Bean
     public ChatMemory chatMemory() {
@@ -48,7 +51,7 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public ChatClient chatClient(AlibabaOpenAiChatModel model, ChatMemory chatMemory) {
+    public ChatClient chatClient(com.teamdev.modernai.model.AlibabaOpenAiChatModel model, ChatMemory chatMemory) {
         return ChatClient
                 .builder(model)
                 .defaultOptions(ChatOptions.builder().model("qwen-omni-turbo").build())
@@ -73,7 +76,7 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public ChatClient serviceChatClient(AlibabaOpenAiChatModel model, ChatMemory chatMemory, CourseTools courseTools) {
+    public ChatClient serviceChatClient(com.teamdev.modernai.model.AlibabaOpenAiChatModel model, ChatMemory chatMemory, CourseTools courseTools) {
         return ChatClient
                 .builder(model)
                 .defaultSystem(SystemConstants.SERVICE_SYSTEM_PROMPT)
@@ -105,7 +108,7 @@ public class CommonConfiguration {
     }
 
     @Bean
-    public AlibabaOpenAiChatModel alibabaOpenAiChatModel(OpenAiConnectionProperties commonProperties, OpenAiChatProperties chatProperties, ObjectProvider<RestClient.Builder> restClientBuilderProvider, ObjectProvider<WebClient.Builder> webClientBuilderProvider, ToolCallingManager toolCallingManager, RetryTemplate retryTemplate, ResponseErrorHandler responseErrorHandler, ObjectProvider<ObservationRegistry> observationRegistry, ObjectProvider<ChatModelObservationConvention> observationConvention) {
+    public com.teamdev.modernai.model.AlibabaOpenAiChatModel alibabaOpenAiChatModel(OpenAiConnectionProperties commonProperties, OpenAiChatProperties chatProperties, ObjectProvider<RestClient.Builder> restClientBuilderProvider, ObjectProvider<WebClient.Builder> webClientBuilderProvider, ToolCallingManager toolCallingManager, RetryTemplate retryTemplate, ResponseErrorHandler responseErrorHandler, ObjectProvider<ObservationRegistry> observationRegistry, ObjectProvider<ChatModelObservationConvention> observationConvention) {
         String baseUrl = StringUtils.hasText(chatProperties.getBaseUrl()) ? chatProperties.getBaseUrl() : commonProperties.getBaseUrl();
         String apiKey = StringUtils.hasText(chatProperties.getApiKey()) ? chatProperties.getApiKey() : commonProperties.getApiKey();
         String projectId = StringUtils.hasText(chatProperties.getProjectId()) ? chatProperties.getProjectId() : commonProperties.getProjectId();
@@ -121,7 +124,7 @@ public class CommonConfiguration {
         RestClient.Builder restClientBuilder = restClientBuilderProvider.getIfAvailable(RestClient::builder);
         WebClient.Builder webClientBuilder = webClientBuilderProvider.getIfAvailable(WebClient::builder);
         OpenAiApi openAiApi = OpenAiApi.builder().baseUrl(baseUrl).apiKey(new SimpleApiKey(apiKey)).headers(CollectionUtils.toMultiValueMap(connectionHeaders)).completionsPath(chatProperties.getCompletionsPath()).embeddingsPath("/v1/embeddings").restClientBuilder(restClientBuilder).webClientBuilder(webClientBuilder).responseErrorHandler(responseErrorHandler).build();
-        AlibabaOpenAiChatModel chatModel = AlibabaOpenAiChatModel.builder().openAiApi(openAiApi).defaultOptions(chatProperties.getOptions()).toolCallingManager(toolCallingManager).retryTemplate(retryTemplate).observationRegistry((ObservationRegistry) observationRegistry.getIfUnique(() -> ObservationRegistry.NOOP)).build();
+        com.teamdev.modernai.model.AlibabaOpenAiChatModel chatModel = com.teamdev.modernai.model.AlibabaOpenAiChatModel.builder().openAiApi(openAiApi).defaultOptions(chatProperties.getOptions()).toolCallingManager(toolCallingManager).retryTemplate(retryTemplate).observationRegistry((ObservationRegistry) observationRegistry.getIfUnique(() -> ObservationRegistry.NOOP)).build();
         Objects.requireNonNull(chatModel);
         observationConvention.ifAvailable(chatModel::setObservationConvention);
         return chatModel;

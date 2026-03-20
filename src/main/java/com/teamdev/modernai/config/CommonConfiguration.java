@@ -1,10 +1,6 @@
 package com.teamdev.modernai.config;
 
-
-import com.teamdev.modernai.constants.SystemConstants;
-import com.teamdev.modernai.model.AlibabaOpenAiChatModel;
-import io.micrometer.observation.ObservationRegistry;
-
+servationRegistry;
 import org.springframework.ai.autoconfigure.openai.OpenAiChatProperties;
 import org.springframework.ai.autoconfigure.openai.OpenAiConnectionProperties;
 import org.springframework.ai.chat.client.ChatClient;

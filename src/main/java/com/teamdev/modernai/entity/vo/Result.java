@@ -1,4 +1,4 @@
-package com.teamdev.modernai.entity.vo;
+package com.itheima.ai.entity.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,8 +1,9 @@
 package com.teamdev.modernai.controller;
 
-import com.itheima.ai.entity.vo.Result;
-import com.itheima.ai.repository.ChatHistoryRepository;
-import com.itheima.ai.repository.FileRepository;
+
+import com.teamdev.modernai.entity.vo.Result;
+import com.teamdev.modernai.repository.ChatHistoryRepository;
+import com.teamdev.modernai.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -68,19 +69,19 @@ public class PdfController {
         try {
             // 1. 校验文件是否为PDF格式
             if (!Objects.equals(file.getContentType(), "application/pdf")) {
-                return Result.fail("只能上传PDF文件！");
+                return com.teamdev.modernai.entity.vo.Result.fail("只能上传PDF文件！");
             }
             // 2.保存文件
             boolean success = fileRepository.save(chatId, file.getResource());
             if (!success) {
-                return Result.fail("保存文件失败！");
+                return com.teamdev.modernai.entity.vo.Result.fail("保存文件失败！");
             }
             // 3.写入向量库
             this.writeToVectorStore(file.getResource());
-            return Result.ok();
+            return com.teamdev.modernai.entity.vo.Result.ok();
         } catch (Exception e) {
             log.error("Failed to upload PDF.", e);
-            return Result.fail("上传文件失败！");
+            return com.teamdev.modernai.entity.vo.Result.fail("上传文件失败！");
         }
     }
 

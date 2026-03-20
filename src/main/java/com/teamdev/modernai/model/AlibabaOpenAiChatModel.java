@@ -17,7 +17,7 @@ import org.springframework.ai.chat.observation.ChatModelObservationDocumentation
 import org.springframework.ai.chat.observation.DefaultChatModelObservationConvention;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.content.Media;
+import org.springframework.ai.model.Media;
 import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.function.FunctionCallback;
 import org.springframework.ai.model.function.FunctionCallbackResolver;
@@ -45,7 +45,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-public class  AlibabaOpenAiChatModel extends AbstractToolCallSupport implements ChatModel {
+public class AlibabaOpenAiChatModel extends AbstractToolCallSupport implements ChatModel {
 
     private static final Logger logger = LoggerFactory.getLogger(AlibabaOpenAiChatModel.class);
 
@@ -629,7 +629,7 @@ public class  AlibabaOpenAiChatModel extends AbstractToolCallSupport implements 
         return request;
     }
 
-    /*private OpenAiApi.ChatCompletionMessage.MediaContent mapToMediaContent(Media media) {
+    private OpenAiApi.ChatCompletionMessage.MediaContent mapToMediaContent(Media media) {
         var mimeType = media.getMimeType();
         if (MimeTypeUtils.parseMimeType("audio/mp3").equals(mimeType) || MimeTypeUtils.parseMimeType("audio/mpeg").equals(mimeType)) {
             return new OpenAiApi.ChatCompletionMessage.MediaContent(
@@ -643,7 +643,7 @@ public class  AlibabaOpenAiChatModel extends AbstractToolCallSupport implements 
             return new OpenAiApi.ChatCompletionMessage.MediaContent(
                     new OpenAiApi.ChatCompletionMessage.MediaContent.ImageUrl(this.fromMediaData(media.getMimeType(), media.getData())));
         }
-    }*/
+    }
 
     private String fromAudioData(Object audioData) {
         if (audioData instanceof byte[] bytes) {
@@ -695,8 +695,8 @@ public class  AlibabaOpenAiChatModel extends AbstractToolCallSupport implements 
         this.observationConvention = observationConvention;
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public static AlibabaOpenAiChatModel.Builder builder() {
+        return new AlibabaOpenAiChatModel.Builder();
     }
 
     public static final class Builder {
@@ -721,39 +721,39 @@ public class  AlibabaOpenAiChatModel extends AbstractToolCallSupport implements 
         private Builder() {
         }
 
-        public Builder openAiApi(OpenAiApi openAiApi) {
+        public AlibabaOpenAiChatModel.Builder openAiApi(OpenAiApi openAiApi) {
             this.openAiApi = openAiApi;
             return this;
         }
 
-        public Builder defaultOptions(OpenAiChatOptions defaultOptions) {
+        public AlibabaOpenAiChatModel.Builder defaultOptions(OpenAiChatOptions defaultOptions) {
             this.defaultOptions = defaultOptions;
             return this;
         }
 
-        public Builder toolCallingManager(ToolCallingManager toolCallingManager) {
+        public AlibabaOpenAiChatModel.Builder toolCallingManager(ToolCallingManager toolCallingManager) {
             this.toolCallingManager = toolCallingManager;
             return this;
         }
 
         @Deprecated
-        public Builder functionCallbackResolver(FunctionCallbackResolver functionCallbackResolver) {
+        public AlibabaOpenAiChatModel.Builder functionCallbackResolver(FunctionCallbackResolver functionCallbackResolver) {
             this.functionCallbackResolver = functionCallbackResolver;
             return this;
         }
 
         @Deprecated
-        public Builder toolFunctionCallbacks(List<FunctionCallback> toolFunctionCallbacks) {
+        public AlibabaOpenAiChatModel.Builder toolFunctionCallbacks(List<FunctionCallback> toolFunctionCallbacks) {
             this.toolFunctionCallbacks = toolFunctionCallbacks;
             return this;
         }
 
-        public Builder retryTemplate(RetryTemplate retryTemplate) {
+        public AlibabaOpenAiChatModel.Builder retryTemplate(RetryTemplate retryTemplate) {
             this.retryTemplate = retryTemplate;
             return this;
         }
 
-        public Builder observationRegistry(ObservationRegistry observationRegistry) {
+        public AlibabaOpenAiChatModel.Builder observationRegistry(ObservationRegistry observationRegistry) {
             this.observationRegistry = observationRegistry;
             return this;
         }

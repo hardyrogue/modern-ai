@@ -1,4 +1,4 @@
-package com.teamdev.modernai.entity.query;
+package com.itheima.ai.entity.query;
 
 import lombok.Data;
 import org.springframework.ai.tool.annotation.ToolParam;
